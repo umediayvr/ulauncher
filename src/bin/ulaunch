@@ -18,8 +18,8 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
         """
         software = self.software()
 
+        # showing addon chooser
         if displayUChooser:
-            # showing addon chooser
             disabledAddons = []
             enabledAddons = []
             for addonName in software.addonNames():
@@ -29,7 +29,6 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
                 else:
                     disabledAddons.append(addonName)
 
-            # showing uchooser
             process = subprocess.Popen(
                 'uchooser "{0}" "{1}"'.format(
                     ' '.join(disabledAddons),
