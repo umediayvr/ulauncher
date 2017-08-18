@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing nuke
+exec ulaunch "nuke" "$@"

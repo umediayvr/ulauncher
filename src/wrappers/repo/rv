@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing rv
+exec ulaunch "rv" "$@"

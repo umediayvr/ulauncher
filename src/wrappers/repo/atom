@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing atom
+exec ulaunch "atom" "$@"
