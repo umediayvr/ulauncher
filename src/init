@@ -71,7 +71,6 @@ if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 fi
 
 # shotgun python location
-# \TODO: this is in a terriable place, move it to another file
 # (currently the location of 'shotgun python' is also used externally under job configuration:
 # <project>/config/toolkit/config/core/interpreter_Linux.cfg)
 export ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE=$UAPPS_ROOT/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Python/bin/python
