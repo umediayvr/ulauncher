@@ -81,18 +81,26 @@ class ProcessExecution(object):
                 self.__process.stdout.fileno(),
                 self.__process.stderr.fileno()
             ]
-            ret = select.select(reads, [], [])
 
-            for fd in ret[0]:
-                if fd == self.__process.stdout.fileno():
-                    read = self.__process.stdout.readline()
-                    sys.stdout.write(read)
-                    self.__stdout.append(read)
+            try:
+                ret = select.select(reads, [], [])
 
-                if fd == self.__process.stderr.fileno():
-                    read = self.__process.stderr.readline()
-                    sys.stderr.write(read)
-                    self.__stderr.append(read)
+            except KeyboardInterrupt:
+                reason = ' KeyboardInterrupt\n'
+                sys.stderr.write(reason)
+                self.__stderr.append(reason)
+
+            else:
+                for fd in ret[0]:
+                    if fd == self.__process.stdout.fileno():
+                        read = self.__process.stdout.readline()
+                        sys.stdout.write(read)
+                        self.__stdout.append(read)
+
+                    if fd == self.__process.stderr.fileno():
+                        read = self.__process.stderr.readline()
+                        sys.stderr.write(read)
+                        self.__stderr.append(read)
 
             if self.__process.poll() is not None:
                 break
