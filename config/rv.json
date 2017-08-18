@@ -1,0 +1,15 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/rv/$UVER_RV_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rv"
+  },
+  "env": {
+    "override": {
+      "RV_SHOTGUN_DEFAULT_SERVER_URL": "umedia.shotgunstudio.com",
+      "RV_SHOTGUN_DEFAULT_LOGIN": "$USERNAME"
+    },
+    "unset": [
+      "QT_PLUGIN_PATH"
+    ]
+  }
+}

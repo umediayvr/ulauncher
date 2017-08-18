@@ -1,0 +1,11 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Shotgun"
+  },
+  "env": {
+    "unset": [
+      "QT_PLUGIN_PATH"
+    ]
+  }
+}
