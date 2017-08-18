@@ -14,7 +14,9 @@
 #                                   /*\
 #                                  / | \
 #                                    |
-
+#
+# Takes care of the execution of applications and their dependencies under
+# umedia environment.
 
 # getting current script folder
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
