@@ -30,16 +30,6 @@ if ! [ -z "$ULAUNCHER_LOCAL" ]; then
   fi
 fi
 
-# setting ULAUNCHER_CONFIG_DIR:
-# at deployment time the contents of src are moved to the root of the version. Lets
-# detect this behaviour first, otherwise it should fallback to the current structure
-# where config folder is localized under the root
-configDir="$dir/config"
-if ! [ -d "$configDir" ]; then
-  configDir="$( dirname $dir )/config"
-fi
-export ULAUNCHER_CONFIG_DIR="$configDir"
-
 # prepending ulauncher module to the python path
 ulauncherLib="$dir/lib"
 if [ -z "$PYTHONPATH" ]; then
@@ -48,12 +38,17 @@ else
   export PYTHONPATH="$ulauncherLib:$PYTHONPATH"
 fi
 
+# making sure $ULAUNCHER_CONFIG_DIR is defined properly
+if ! [ -d "$ULAUNCHER_CONFIG_DIR" ]; then
+  echo "ulauncher error: Could not find directory defined by \$ULAUNCHER_CONFIG_DIR" >&2
+fi
+
 # avoiding to prepended to the system path for every single bash session by making
 # sure bin is not included to the path yet.
 ulauncherBinPath+="$dir/bin:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
 if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
-  # rez support
+  # rez support (if available for the platform)
   rez="$UAPPS_ROOT/rez/$UVER_REZ_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
   if [ -d "$rez" ]; then
     # adding it to the path
@@ -61,9 +56,6 @@ if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
     # sourcing auto-completion
     source "$rez/completion/complete.sh"
-  else
-    # should throw an error message in case it was not found
-    echo "ulauncher error: Could not find rez version $UVER_REZ_VERSION for the current platform/os ($UCORE_OS/$UCORE_OS_VERSION)!" >&2
   fi
 
   export ULAUNCHER_BIN_PATH=$ulauncherBinPath
