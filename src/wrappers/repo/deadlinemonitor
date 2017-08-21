@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing deadline monitor
+exec ulaunch "deadlinemonitor" "$@"

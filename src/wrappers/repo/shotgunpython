@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing shotgun python
+exec "$ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE" "$@"

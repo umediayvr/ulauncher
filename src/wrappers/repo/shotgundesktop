@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# making sure to have just one instance of shotgun desktop running at time
+if ! pgrep -x "Shotgun" > /dev/null
+then
+  # executing shotgun desktop
+  exec ulaunch "shotgundesktop" "$@"
+fi

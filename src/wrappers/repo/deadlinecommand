@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing deadline command
+exec ulaunch "deadlinecommand" "$@"

@@ -1,0 +1,111 @@
+#!/usr/bin/env python
+
+import os
+import argparse
+import ulauncher
+import subprocess
+import uver
+
+class _CustomLauncherRunner(ulauncher.LauncherRunner):
+
+    ulauncherConfigDir = os.environ['ULAUNCHER_CONFIG_DIR']
+    uverVersionsDir = os.environ['UVER_VERSIONS_DIR']
+    uchooserEnvName = 'ULAUNCHER_SHOW_UCHOOSER'
+
+    def run(self, args, env, displayUChooser=False):
+        """
+        Hooking the execution to add support for the "addonchooser" interface.
+        """
+        software = self.software()
+
+        # showing addon chooser
+        if displayUChooser:
+            disabledAddons = []
+            enabledAddons = []
+            for addonName in software.addonNames():
+                addon = software.addon(addonName)
+                if 'enabled' in addon.optionNames() and addon.option("enabled"):
+                    enabledAddons.append(addonName)
+                else:
+                    disabledAddons.append(addonName)
+
+            process = subprocess.Popen(
+                'uchooser "{0}" "{1}"'.format(
+                    ' '.join(disabledAddons),
+                    ' '.join(enabledAddons),
+                ),
+                stdout=subprocess.PIPE,
+                shell=True
+            )
+            stdout, stderr = process.communicate()
+            enabledAddonNames = stdout.split('\n')
+            for addonName in software.addonNames():
+                addon = software.addon(addonName)
+                addon.setOption('enabled', (addon.name() in enabledAddonNames))
+
+        # runnint it
+        return super(_CustomLauncherRunner, self).run(args, env)
+
+    @staticmethod
+    def createSoftware(name, env):
+        """
+        Return a versioned software object.
+        """
+        # creating a uver parser to collect the available softwares
+        uverLoader = uver.Loader.JsonLoader()
+        uverLoader.addFromJsonDirectory(_CustomLauncherRunner.uverVersionsDir)
+
+        # getting available softwares
+        softwares = uverLoader.softwares(env)
+
+        # returning specific software
+        return uver.Query(softwares).softwareByName(name)
+
+
+# command help
+parser = argparse.ArgumentParser(
+    add_help=False,
+    description='Launches an application'
+)
+
+parser.add_argument(
+    'name',
+    type=str,
+    help='Application name that should be initialized'
+)
+
+parser.add_argument(
+    '--uchooser',
+    default=False,
+    action="store_true",
+    help='Displays the addon chooser interface before loading the application.'
+)
+
+if __name__ == "__main__":
+    args, unknownArgs = parser.parse_known_args()
+    env = dict(os.environ)
+
+    displayUChooser = args.uchooser
+    uchooserEnv = _CustomLauncherRunner.uchooserEnvName
+    if uchooserEnv in env:
+        displayUChooser = True
+        del env[uchooserEnv]
+
+    # creating a software to pass to the runner
+    software = _CustomLauncherRunner.createSoftware(
+        args.name,
+        env
+    )
+
+    # creating a launcher runner
+    launcherRunner = _CustomLauncherRunner(
+        software,
+        _CustomLauncherRunner.ulauncherConfigDir
+    )
+
+    # running it
+    launcherRunner.run(
+        unknownArgs,
+        env,
+        displayUChooser
+    )

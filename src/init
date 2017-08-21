@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#
+#                               [=========]
+#                    -==++""" .  /. . .  \ .  """++==-
+#             -+""   \   .. . .  | ..  . |  . .  .   /   ""+-
+#          /\  +-""   `-----=====\    /=====-----'   ""-+  /\
+#         / /                      ""=""                      \ \
+#       / /                                                     \ \
+#      //                            |                            \\
+#     /")                          \ | /                          ("\
+#     \o\                           \*/                           /o/
+#      \ )                       --**O**--                       ( /
+#                                   /*\
+#                                  / | \
+#                                    |
+#
+# Takes care of the execution of applications and their dependencies under
+# umedia environment.
+
+# getting current script folder
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# adding wrappers to the path
+ulauncherBinPath=""
+if ! [ -z "$ULAUNCHER_LOCAL" ]; then
+  localWrappersPath="$ULAUNCHER_LOCAL/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
+  if [ -d "$localWrappersPath" ]; then
+    ulauncherBinPath+="$localWrappersPath:"
+  fi
+fi
+
+# prepending ulauncher module to the python path
+ulauncherLib="$dir/lib"
+if [ -z "$PYTHONPATH" ]; then
+  export PYTHONPATH="$ulauncherLib"
+else
+  export PYTHONPATH="$ulauncherLib:$PYTHONPATH"
+fi
+
+# making sure $ULAUNCHER_CONFIG_DIR is defined properly
+if ! [ -d "$ULAUNCHER_CONFIG_DIR" ]; then
+  echo "ulauncher error: Could not find directory defined by \$ULAUNCHER_CONFIG_DIR" >&2
+fi
+
+# avoiding to prepended to the system path for every single bash session by making
+# sure bin is not included to the path yet.
+ulauncherBinPath+="$dir/bin:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
+if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
+
+  # rez support (if available for the platform)
+  rez="$UAPPS_ROOT/rez/$UVER_REZ_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
+  if [ -d "$rez" ]; then
+    # adding it to the path
+    export PATH="$rez/bin/rez:$PATH"
+
+    # sourcing auto-completion
+    source "$rez/completion/complete.sh"
+  fi
+
+  export ULAUNCHER_BIN_PATH=$ulauncherBinPath
+  export PATH="$ULAUNCHER_BIN_PATH:$PATH"
+fi
+
+# shotgun python location
+# (currently the location of 'shotgun python' is also used externally under job configuration:
+# <project>/config/toolkit/config/core/interpreter_Linux.cfg)
+export ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE=$UAPPS_ROOT/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Python/bin/python
