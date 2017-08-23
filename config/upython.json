@@ -1,0 +1,33 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/python/$UVER_UPYTHON_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/python"
+  },
+  "env": {
+    "prepend": {
+      "PYTHONPATH": [
+        "$ULIBS_ROOT/setuptools/$UVER_SETUPTOOLS_VERSION/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages"
+      ]
+    }
+  },
+  "addons": {
+    "pyopenexr": {
+      "env": {
+        "prepend": {
+          "PYTHONPATH": "$ULIBS_ROOT/pyopenexr/$UVER_PYOPENEXR_VERSION/$UCORE_OS/$UCORE_OS_VERSION/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages",
+          "LD_LIBRARY_PATH": [
+            "$ULIBS_ROOT/openexr/$UVER_OPENEXR_VERSION/lib/$UCORE_OS/$UCORE_OS_VERSION/lib",
+            "$ULIBS_ROOT/ilmbase/$UVER_ILMBASE_VERSION/lib/$UCORE_OS/$UCORE_OS_VERSION/lib"
+          ]
+        }
+      }
+    },
+    "tank": {
+      "env": {
+        "prepend": {
+          "PYTHONPATH": "$ULIBS_ROOT/tank/$UVER_TANK_VERSION/lib/python$(majorminorver $UVER_UPYTHON_VERSION)"
+        }
+      }
+    }
+  }
+}
