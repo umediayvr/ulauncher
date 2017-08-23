@@ -6,7 +6,7 @@
 function queryMajorVersion()
 {
   local semver=$1
-  echo "$semver" | grep -oE '[0-9].' | head -n 1
+  echo "$semver" | grep -oE '[0-9]*' | head -n 1
 }
 
 queryMajorVersion $1
