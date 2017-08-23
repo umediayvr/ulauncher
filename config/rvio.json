@@ -1,0 +1,6 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/rv/$UVER_RV_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rvio"
+  }
+}
