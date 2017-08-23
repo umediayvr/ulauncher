@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/deadline/$UVER_DEADLINE_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/deadlinecommand"
+    "executable": "$UAPPS_ROOT/deadline/$UVER_DEADLINECOMMAND_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/deadlinecommand"
   }
 }
