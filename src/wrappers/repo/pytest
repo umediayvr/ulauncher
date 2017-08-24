@@ -8,4 +8,4 @@ pytestLib="$pytestRoot/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-pac
 export PYTHONPATH=$pytestLib:$PYTHONPATH
 
 # executing pytest
-exec upython "$pytestRoot/bin/pytest" "$@"
+exec upython-bin "$pytestRoot/bin/pytest" "$@"
