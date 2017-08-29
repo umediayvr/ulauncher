@@ -1,0 +1,6 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/cmake/$UVER_CMAKE_VERSION/bin/$UCORE_OS/bin/cmake"
+  }
+}
