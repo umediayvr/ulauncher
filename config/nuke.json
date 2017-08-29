@@ -13,7 +13,7 @@
       "env":{
         "prepend": {
           "OFX_PLUGIN_PATH": [
-            "$UPLUGINS_ROOT/nuke/$(majorversion $UVER_NUKE_VERSION)/neatVideo/$UVER_NEATVIDEO_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
+            "$UPLUGINS_ROOT/nuke/$(majorver $UVER_NUKE_VERSION)/neatVideo/$UVER_NEATVIDEO_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
           ]
         }
       }

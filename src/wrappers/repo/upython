@@ -1,18 +1,4 @@
 #!/bin/bash
 
-pythonExecutable="$UAPPS_ROOT/python/$UVER_UPYTHON_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/python"
-
-# getting current python version
-executableVersion=$(pythonversion $pythonExecutable)
-
-# tank library
-tankLibrary="$ULIBS_ROOT/tank/$UVER_TANK_VERSION/lib/python$executableVersion"
-
-# setuptools library
-setuptoolsLib="$ULIBS_ROOT/setuptools/$UVER_SETUPTOOLS_VERSION/lib/python$executableVersion/site-packages"
-
-# adding libraries to the python path
-export PYTHONPATH=$tankLibrary:$setuptoolsLib:$PYTHONPATH
-
 # executing upython
-exec $pythonExecutable "$@"
+exec ulaunch "upython" "$@"

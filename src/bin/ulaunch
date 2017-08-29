@@ -38,7 +38,7 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
                 shell=True
             )
             stdout, stderr = process.communicate()
-            enabledAddonNames = stdout.split('\n')
+            enabledAddonNames = stdout[:-1].split(' ')
             for addonName in software.addonNames():
                 addon = software.addon(addonName)
                 addon.setOption('enabled', (addon.name() in enabledAddonNames))

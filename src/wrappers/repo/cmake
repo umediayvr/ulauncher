@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing cmake
+exec ulaunch "cmake" "$@"
