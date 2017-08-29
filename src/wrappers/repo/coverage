@@ -8,4 +8,4 @@ coverageLib="$coverageRoot/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site
 export PYTHONPATH=$coverageLib:$PYTHONPATH
 
 # executing coverage
-exec upython-bin "$coverageRoot/bin/coverage" "$@"
+exec upython "$coverageRoot/bin/coverage" "$@"

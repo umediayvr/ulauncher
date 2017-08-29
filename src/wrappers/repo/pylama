@@ -8,4 +8,4 @@ pylamaLib="$pylamaRoot/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-pac
 export PYTHONPATH=$pylamaLib:$PYTHONPATH
 
 # executing pylama
-exec upython-bin "$pylamaRoot/bin/pylama" "$@"
+exec upython "$pylamaRoot/bin/pylama" "$@"
