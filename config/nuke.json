@@ -17,6 +17,15 @@
           ]
         }
       }
+    },
+    "eddy":{
+      "env":{
+        "prepend": {
+          "NUKE_PATH": [
+            "$UPLUGINS_ROOT/nuke/$(majorver $UVER_NUKE_VERSION)/eddy/$UVER_EDDY_VERSION/bin/$UCORE_OS"
+          ]
+        }
+      }
     }
   }
 }
