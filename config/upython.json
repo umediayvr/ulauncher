@@ -13,6 +13,11 @@
           "LD_LIBRARY_PATH": [
             "$ULIBS_ROOT/qt/$UVER_QT_VERSION/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/lib"
           ]
+        },
+        "override": {
+          "QT_QPA_PLATFORM_PLUGIN_PATH": [
+            "$ULIBS_ROOT/qt/$UVER_QT_VERSION/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/plugins"
+          ]
         }
       }
     },
