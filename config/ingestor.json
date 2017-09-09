@@ -6,7 +6,7 @@
   "env": {
     "prepend": {
       "PYTHONPATH": [
-        "$UAPPS_ROOT/ingestor/$UVER_INGESTOR_VERSION/python$(majorminorver $UVER_UPYTHON_VERSION)/lib"
+        "$UAPPS_ROOT/ingestor/$UVER_INGESTOR_VERSION/python$(majorver $UVER_UPYTHON_VERSION)/lib"
       ]
     }
   }
