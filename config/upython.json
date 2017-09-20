@@ -48,6 +48,9 @@
           "LD_LIBRARY_PATH": [
             "$ULIBS_ROOT/opencolorio/$UVER_OPENCOLORIO_VERSION/$UCORE_OS/lib"
           ]
+        },
+        "override": {
+          "OCIO": "$ULIBS_ROOT/opencolorio/configs/nuke-default/config.ocio"
         }
       }
     },
