@@ -99,6 +99,8 @@ class Launcher(object):
         # processExecution.stdout()
         # processExecution.stderr()
 
+        return processExecution
+
     @staticmethod
     def create(name, *args, **kwargs):
         """

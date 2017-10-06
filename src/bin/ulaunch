@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import argparse
 import ulauncher
 import subprocess
@@ -104,8 +105,10 @@ if __name__ == "__main__":
     )
 
     # running it
-    launcherRunner.run(
-        unknownArgs,
-        env,
-        displayUChooser
+    sys.exit(
+        launcherRunner.run(
+            unknownArgs,
+            env,
+            displayUChooser
+        ).exitStatus()
     )
