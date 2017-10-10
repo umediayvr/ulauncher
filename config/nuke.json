@@ -6,7 +6,10 @@
   "env": {
     "unset": [
       "QT_PLUGIN_PATH"
-    ]
+    ],
+    "override": {
+      "NUKE_TEMP_DIR": "$UMEDIA_VOLATILE_LOCAL_DIR"
+    }
   },
   "addons": {
     "neatvideo":{
