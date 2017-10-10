@@ -1,0 +1,6 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/xnview/$UVER_XNVIEW_VERSION/bin/$UCORE_OS/xnview.sh"
+  }
+}
