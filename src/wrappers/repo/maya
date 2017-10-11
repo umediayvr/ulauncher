@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing maya
+exec ulaunch "maya" "$@"

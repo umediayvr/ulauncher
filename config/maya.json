@@ -1,0 +1,11 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/maya/$UVER_MAYA_VERSION/bin/$UCORE_OS/bin/maya$(majorver $UVER_MAYA_VERSION)"
+  },
+  "env": {
+    "prepend": {
+      "LD_LIBRARY_PATH": "$USYSTEMLIBS_ROOT/libTiff/lib/$UCORE_OS/$UCORE_OS_VERSION"
+    }
+  }
+}
