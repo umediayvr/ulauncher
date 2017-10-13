@@ -8,7 +8,7 @@
       "QT_PLUGIN_PATH"
     ],
     "override": {
-      "NUKE_TEMP_DIR": "$UMEDIA_VOLATILE_LOCAL_DIR"
+      "NUKE_TEMP_DIR": "$UMEDIA_TEMP_LOCAL_DIR"
     }
   },
   "addons": {
