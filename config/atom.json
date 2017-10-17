@@ -5,8 +5,7 @@
   },
   "env": {
     "prepend": {
-      "PATH": "$UAPPS_ROOT/atom/$UVER_ATOM_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom",
-      "LD_LIBRARY_PATH": "$USYSTEMLIBS_ROOT/libXScrnSaver/lib/$UCORE_OS/$UCORE_OS_VERSION"
+      "PATH": "$UAPPS_ROOT/atom/$UVER_ATOM_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom"
     }
   }
 }
