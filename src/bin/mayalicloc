@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Returns the location about the maya license (AdlmThinClientCustomEnv.xml)
+# first argument: maya version (example: 1.3.0)
+function queryMayaLicLocation()
+{
+  local mayaVersion=$1
+  local mayaMajorVersion="$(majorver $mayaVersion)"
+  local mayaLicenseEnvName="MAYA${mayaMajorVersion}_AUTODESK_ADLM_THINCLIENT_ENV"
+  echo "${!mayaLicenseEnvName}"
+}
+
+queryMayaLicLocation $1

@@ -1,0 +1,22 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$UAPPS_ROOT/maya/$UVER_MAYA_VERSION/bin/$UCORE_OS/autodesk/maya/bin/maya$(majorver $UVER_MAYA_VERSION)"
+  },
+  "env": {
+    "override":{
+      "AUTODESK_ADLM_THINCLIENT_ENV": "$(mayalicloc $UVER_MAYA_VERSION)"
+    }
+  },
+  "addons": {
+    "mtoa": {
+      "env": {
+        "prepend": {
+          "MAYA_MODULE_PATH": [
+            "$UPLUGINS_ROOT/maya/$(majorver $UVER_MAYA_VERSION)/mtoa/$UVER_MTOA_VERSION/bin/$UCORE_OS"
+          ]
+        }
+      }
+    }
+  }
+}
