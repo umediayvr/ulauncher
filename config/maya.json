@@ -10,6 +10,15 @@
     }
   },
   "addons": {
+    "basetools": {
+      "env": {
+        "prepend" : {
+          "PYTHONPATH": [
+            "$UTOOLS_ROOT/base/$UVER_BASETOOLS_VERSION/lib"
+          ]
+        }
+      }
+    },
     "mayatools": {
       "env" : {
         "prepend": {
