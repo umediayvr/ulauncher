@@ -4,11 +4,33 @@
     "executable": "$UAPPS_ROOT/maya/$UVER_MAYA_VERSION/bin/$UCORE_OS/autodesk/maya/bin/maya$(majorver $UVER_MAYA_VERSION)"
   },
   "env": {
-    "override":{
-      "AUTODESK_ADLM_THINCLIENT_ENV": "$(mayalicloc $UVER_MAYA_VERSION)"
+    "override": {
+      "AUTODESK_ADLM_THINCLIENT_ENV": "$(mayalicloc $UVER_MAYA_VERSION)",
+      "SGTK_COMPATIBILITY_DIALOG_SHOWN": "0"
     }
   },
   "addons": {
+    "basetools": {
+      "env": {
+        "prepend" : {
+          "PYTHONPATH": [
+            "$UTOOLS_ROOT/base/$UVER_BASETOOLS_VERSION/lib"
+          ]
+        }
+      }
+    },
+    "mayatools": {
+      "env" : {
+        "prepend": {
+          "MAYA_SCRIPT_PATH": [
+            "$UTOOLS_ROOT/maya/$UVER_MAYATOOLS_VERSION/scripts"
+          ],
+          "PYTHONPATH": [
+            "$UTOOLS_ROOT/maya/$UVER_MAYATOOLS_VERSION/lib"
+          ]
+        }
+      }
+    },
     "mtoa": {
       "env": {
         "prepend": {

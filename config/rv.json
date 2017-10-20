@@ -11,5 +11,16 @@
     "unset": [
       "QT_PLUGIN_PATH"
     ]
+  },
+  "addons": {
+    "basetools": {
+      "env": {
+        "prepend" : {
+          "PYTHONPATH": [
+            "$UTOOLS_ROOT/base/$UVER_BASETOOLS_VERSION/lib"
+          ]
+        }
+      }
+    }
   }
 }
