@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pylama root
-pylamaRoot="$ULIBS_ROOT/pylama/$UVER_PYLAMA_VERSION"
+pylamaRoot="$( locres libs/pylama/$UVER_PYLAMA_VERSION )"
 pylamaLib="$pylamaRoot/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages"
 
 # adding libraries to the python path

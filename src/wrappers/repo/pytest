@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pytest root
-pytestRoot="$ULIBS_ROOT/pytest/$UVER_PYTEST_VERSION"
+pytestRoot="$( locres libs/pytest/$UVER_PYTEST_VERSION )"
 pytestLib="$pytestRoot/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages"
 
 # adding libraries to the python path
