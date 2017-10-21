@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/rv/$UVER_RVIO_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rvio"
+    "executable": "$( locres apps/rv/$UVER_RVIO_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rvio"
   }
 }

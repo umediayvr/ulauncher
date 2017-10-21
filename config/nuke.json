@@ -1,7 +1,7 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/nuke/$UVER_NUKE_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Nuke*"
+    "executable": "$( locres apps/nuke/$UVER_NUKE_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Nuke*"
   },
   "env": {
     "unset": [
@@ -16,7 +16,7 @@
       "env": {
         "prepend" : {
           "PYTHONPATH": [
-            "$UTOOLS_ROOT/base/$UVER_BASETOOLS_VERSION/lib"
+            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/lib"
           ]
         }
       }
@@ -25,7 +25,7 @@
       "env":{
         "prepend": {
           "OFX_PLUGIN_PATH": [
-            "$UPLUGINS_ROOT/nuke/$(majorver $UVER_NUKE_VERSION)/neatVideo/$UVER_NEATVIDEO_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
+            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/neatVideo/$UVER_NEATVIDEO_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION"
           ]
         }
       }
@@ -34,7 +34,7 @@
       "env":{
         "prepend": {
           "NUKE_PATH": [
-            "$UPLUGINS_ROOT/nuke/$(majorver $UVER_NUKE_VERSION)/eddy/$UVER_EDDY_VERSION/bin/$UCORE_OS"
+            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/eddy/$UVER_EDDY_VERSION )/bin/$UCORE_OS"
           ]
         }
       }

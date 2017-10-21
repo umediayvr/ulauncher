@@ -1,22 +1,22 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/python/$UVER_UPYTHON_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/python$(majorminorver $UVER_UPYTHON_VERSION)"
+    "executable": "$( locres apps/python/$UVER_UPYTHON_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/python$(majorminorver $UVER_UPYTHON_VERSION)"
   },
   "addons": {
     "pyside2": {
       "env": {
         "prepend": {
           "PYTHONPATH": [
-            "$ULIBS_ROOT/pyside2/$UVER_PYSIDE2_VERSION/$UCORE_OS"
+            "$( locres libs/pyside2/$UVER_PYSIDE2_VERSION )/$UCORE_OS"
           ],
           "LD_LIBRARY_PATH": [
-            "$ULIBS_ROOT/qt/$UVER_QT_VERSION/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/lib"
+            "$( locres libs/qt/$UVER_QT_VERSION )/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/lib"
           ]
         },
         "override": {
           "QT_QPA_PLATFORM_PLUGIN_PATH": [
-            "$ULIBS_ROOT/qt/$UVER_QT_VERSION/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/plugins"
+            "$( locres libs/qt/$UVER_QT_VERSION )/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/plugins"
           ]
         }
       }
@@ -25,7 +25,7 @@
       "env": {
         "prepend": {
           "PYTHONPATH": [
-            "$ULIBS_ROOT/setuptools/$UVER_SETUPTOOLS_VERSION/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages"
+            "$( locres libs/setuptools/$UVER_SETUPTOOLS_VERSION )/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages"
           ]
         }
       }
@@ -33,10 +33,10 @@
     "openimageio": {
       "env": {
         "prepend": {
-          "PYTHONPATH": "$ULIBS_ROOT/openimageio/$UVER_OPENIMAGEIO_VERSION/$UCORE_OS/lib/python$(majorver $UVER_UPYTHON_VERSION)/site-packages",
+          "PYTHONPATH": "$( locres libs/openimageio/$UVER_OPENIMAGEIO_VERSION )/$UCORE_OS/lib/python$(majorver $UVER_UPYTHON_VERSION)/site-packages",
           "LD_LIBRARY_PATH": [
-            "$ULIBS_ROOT/png/$UVER_PNG_VERSION/$UCORE_OS/lib",
-            "$ULIBS_ROOT/openimageio/$UVER_OPENIMAGEIO_VERSION/$UCORE_OS/lib"
+            "$( locres libs/png/$UVER_PNG_VERSION )/$UCORE_OS/lib",
+            "$( locres libs/openimageio/$UVER_OPENIMAGEIO_VERSION )/$UCORE_OS/lib"
           ]
         }
       }
@@ -44,20 +44,20 @@
     "opencolorio": {
       "env": {
         "prepend": {
-          "PYTHONPATH": "$ULIBS_ROOT/opencolorio/$UVER_OPENCOLORIO_VERSION/$UCORE_OS/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages",
+          "PYTHONPATH": "$( locres libs/opencolorio/$UVER_OPENCOLORIO_VERSION )/$UCORE_OS/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/site-packages",
           "LD_LIBRARY_PATH": [
-            "$ULIBS_ROOT/opencolorio/$UVER_OPENCOLORIO_VERSION/$UCORE_OS/lib"
+            "$( locres libs/opencolorio/$UVER_OPENCOLORIO_VERSION )/$UCORE_OS/lib"
           ]
         },
         "override": {
-          "OCIO": "$ULIBS_ROOT/opencolorio/configs/nuke-default/config.ocio"
+          "OCIO": "$( locres libs/opencolorio/configs )/nuke-default/config.ocio"
         }
       }
     },
     "tank": {
       "env": {
         "prepend": {
-          "PYTHONPATH": "$ULIBS_ROOT/tank/$UVER_TANK_VERSION/lib/python$(majorminorver $UVER_UPYTHON_VERSION)"
+          "PYTHONPATH": "$( locres libs/tank/$UVER_TANK_VERSION )/lib/python$(majorminorver $UVER_UPYTHON_VERSION)"
         }
       }
     }

@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/deadline/$UVER_DEADLINESLAVE_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/deadlineslave"
+    "executable": "$( locres apps/deadline/$UVER_DEADLINECOMMAND_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/deadlineslave"
   }
 }

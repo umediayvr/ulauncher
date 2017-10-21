@@ -1,11 +1,11 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/atom/$UVER_ATOM_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom"
+    "executable": "$( locres apps/atom/$UVER_ATOM_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom"
   },
   "env": {
     "prepend": {
-      "PATH": "$UAPPS_ROOT/atom/$UVER_ATOM_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom"
+      "PATH": "$( locres apps/atom/$UVER_ATOM_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/usr/bin/atom"
     }
   }
 }

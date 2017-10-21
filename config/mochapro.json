@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/mochapro/$UVER_MOCHAPRO_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/mochapro"
+    "executable": "$( locres apps/mochapro/$UVER_MOCHAPRO_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/mochapro"
   }
 }
