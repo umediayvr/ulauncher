@@ -1,0 +1,20 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$( locres apps/qbs/$UVER_QBS_VERSION )/$UCORE_OS/bin/qbs"
+  },
+  "env": {
+    "prepend": {
+      "LD_LIBRARY_PATH": [
+        "$( locres apps/qbs/$UVER_QBS_VERSION )/$UCORE_OS/lib",
+        "$( locres libs/qt/$UVER_QT_VERSION )/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/lib"
+      ]
+    },
+    "override": {
+      "QT_QPA_PLATFORM_PLUGIN_PATH": [
+        "$( locres apps/qbs/$UVER_QBS_VERSION )/$UCORE_OS/lib/qbs/plugins",
+        "$( locres libs/qt/$UVER_QT_VERSION )/$UCORE_OS/$(majorminorver $UVER_QT_VERSION)/gcc_64/plugins"
+      ]
+    }
+  }
+}
