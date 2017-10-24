@@ -1,4 +1,12 @@
 #!/bin/bash
 
 # executing maya
-exec ulaunch "maya" "$@"
+if [[ "$@" =~ "-prompt" ]]; then
+  # TODO:
+  # deadline runs maya in interactive mode (stdin) which is not supported by ulauncher
+  # for this reason calling it directly. This should be removed as soon as deadline
+  # is replaced.
+  exec $UAPPS_ROOT/maya/$UVER_MAYA_VERSION/bin/$UCORE_OS/autodesk/maya/bin/maya$(majorver $UVER_MAYA_VERSION) "$@"
+else
+  exec ulaunch "maya" "$@"
+fi
