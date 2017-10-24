@@ -1,4 +1,4 @@
-from Launcher import Launcher
+from .Launcher import Launcher
 from ..ProcessExecution import ProcessExecution
 from ..ResourceResolver import ResourceResolver
 

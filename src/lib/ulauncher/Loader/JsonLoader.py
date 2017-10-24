@@ -1,5 +1,5 @@
 import json
-from Loader import Loader
+from .Loader import Loader
 from ..EnvModifier import EnvModifier
 
 class UnexpecteJsonContentError(Exception):

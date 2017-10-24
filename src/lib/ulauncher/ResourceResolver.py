@@ -41,6 +41,7 @@ class ResourceResolver(object):
         )
 
         output, error = process.communicate()
+        output = output.decode('ascii')
 
         # in case of any erros
         if error:
