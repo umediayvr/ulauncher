@@ -93,13 +93,13 @@ class ProcessExecution(object):
             else:
                 for fd in ret[0]:
                     if fd == self.__process.stdout.fileno():
-                        read = self.__process.stdout.readline()
-                        sys.stdout.write(read)
+                        read = self.__process.stdout.readline().decode("ascii")
+                        sys.stdout.write(str(read))
                         self.__stdout.append(read)
 
                     if fd == self.__process.stderr.fileno():
-                        read = self.__process.stderr.readline()
-                        sys.stderr.write(read)
+                        read = self.__process.stderr.readline().decode("ascii")
+                        sys.stderr.write(str(read))
                         self.__stderr.append(read)
 
             if self.__process.poll() is not None:
@@ -123,7 +123,7 @@ class ProcessExecution(object):
         """
         Create a process that later should be executed through {@link run}.
         """
-        executableArgs = ' '.join(self.args()) if self.isShell() else self.args()
+        executableArgs = ' '.join(map(str, self.args())) if self.isShell() else self.args()
         self.__process = subprocess.Popen(
             executableArgs,
             stdout=subprocess.PIPE,

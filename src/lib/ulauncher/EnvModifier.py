@@ -1,4 +1,11 @@
-from ResourceResolver import ResourceResolver
+from .ResourceResolver import ResourceResolver
+from collections import OrderedDict
+
+# compatibility with python 2/3
+try:
+    basestring
+except NameError:
+    basestring = str
 
 class InvalidVarError(Exception):
     """Invalid var error."""
@@ -19,9 +26,9 @@ class EnvModifier(object):
         Create an env modifier object.
         """
         self.__env = {
-            'prepend': {},
-            'append': {},
-            'override': {},
+            'prepend': OrderedDict(),
+            'append': OrderedDict(),
+            'override': OrderedDict(),
             'unset': set()
         }
 
@@ -65,9 +72,9 @@ class EnvModifier(object):
             self.__env['prepend'][name] = []
 
         if isinstance(value, list):
-            self.__env['prepend'][name] += value
+            self.__env['prepend'][name] = value + self.__env['prepend'][name]
         else:
-            self.__env['prepend'][name].append(value)
+            self.__env['prepend'][name].insert(0, value)
 
     def prependVar(self, name):
         """
@@ -232,7 +239,7 @@ class EnvModifier(object):
         for index, value in enumerate(result):
             result[index] = self.__resourceResolver.resolve(value)
 
-        return self.__envPathSep().join(result)
+        return self.__envPathSep().join(map(str, result))
 
     def __setBaseEnv(self, env):
         """

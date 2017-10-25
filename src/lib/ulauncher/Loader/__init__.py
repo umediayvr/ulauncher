@@ -1,2 +1,2 @@
-from Loader import Loader, MissingLauncherTypeError
-from JsonLoader import JsonLoader, UnexpecteJsonContentError
+from .Loader import Loader, MissingLauncherTypeError
+from .JsonLoader import JsonLoader, UnexpecteJsonContentError

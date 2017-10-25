@@ -2,6 +2,12 @@ import uver
 from ..EnvModifier import EnvModifier
 from ..Launcher import Launcher
 
+# compatibility with python 2/3
+try:
+    basestring
+except NameError:
+    basestring = str
+
 class MissingLauncherTypeError(Exception):
     """Missing launcher type error."""
 
