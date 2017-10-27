@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$ULIBS_ROOT/qt/$UVER_QTCREATOR_VERSION/$UCORE_OS/Tools/QtCreator/bin/qtcreator"
+    "executable": "$( locres libs/qt/$UVER_QTCREATOR_VERSION )/$UCORE_OS/Tools/QtCreator/bin/qtcreator"
   }
 }

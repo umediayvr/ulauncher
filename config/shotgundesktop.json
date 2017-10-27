@@ -1,7 +1,7 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Shotgun"
+    "executable": "$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Shotgun"
   },
   "env": {
     "unset": [

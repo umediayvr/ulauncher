@@ -1,7 +1,7 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/rv/$UVER_RV_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rv"
+    "executable": "$( locres apps/rv/$UVER_RV_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rv"
   },
   "env": {
     "override": {
@@ -17,7 +17,7 @@
       "env": {
         "prepend" : {
           "PYTHONPATH": [
-            "$UTOOLS_ROOT/base/$UVER_BASETOOLS_VERSION/lib"
+            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/lib"
           ]
         }
       }
