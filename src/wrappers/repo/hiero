@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing hiero
+exec ulaunch "nuke" --hiero "$@"
