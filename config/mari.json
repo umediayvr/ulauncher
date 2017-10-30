@@ -2,5 +2,10 @@
   "launcherType": "bin",
   "config": {
     "executable": "$( locres apps/mari/$UVER_MARI_VERSION )/bin/$UCORE_OS/mari"
+  },
+  "env": {
+    "override": {
+      "MARI_CACHE": "$UMEDIA_TEMP_LOCAL_DIR/mari"
+    }
   }
 }
