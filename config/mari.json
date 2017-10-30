@@ -1,0 +1,6 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$( locres apps/mari/$UVER_MARI_VERSION )/bin/$UCORE_OS/mari"
+  }
+}
