@@ -1,6 +1,6 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$UAPPS_ROOT/gaffer/$UVER_GAFFER_VERSION/bin/$UCORE_OS/bin/gaffer"
+    "executable": "$( locres apps/gaffer/$UVER_GAFFER_VERSION )/bin/$UCORE_OS/bin/gaffer"
   }
 }
