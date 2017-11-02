@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing silhouette
+exec ulaunch "silhouette" "$@"
