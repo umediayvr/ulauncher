@@ -49,7 +49,7 @@ ulauncherBinPath+="$dir/bin:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
 if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
   # rez support (if available for the platform)
-  rez="$UAPPS_ROOT/rez/$UVER_REZ_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION"
+  rez="$( locres apps/rez/$UVER_REZ_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION"
   if [ -d "$rez" ]; then
     # adding it to the path
     export PATH="$rez/bin/rez:$PATH"
@@ -65,4 +65,4 @@ fi
 # shotgun python location
 # (currently the location of 'shotgun python' is also used externally under job configuration:
 # <project>/config/toolkit/config/core/interpreter_Linux.cfg)
-export ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE=$UAPPS_ROOT/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION/bin/$UCORE_OS/$UCORE_OS_VERSION/Python/bin/python
+export ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE=$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Python/bin/python

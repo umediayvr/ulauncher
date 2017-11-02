@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing gcc
+exec ulaunch "gcc" "$@"
