@@ -7,13 +7,14 @@ class ProcessExecution(object):
     Executes a process.
     """
 
-    def __init__(self, args, env={}, shell=True):
+    def __init__(self, args, env={}, shell=True, cwd=None):
         """
         Create an ProcessExecution object.
         """
         self.__stdout = []
         self.__stderr = []
         self.__shell = shell
+        self.__cwd = cwd
 
         self.__setArgs(args)
         self.__setEnv(env)
@@ -30,6 +31,12 @@ class ProcessExecution(object):
         Return the environment for the process.
         """
         return self.__env
+
+    def cwd(self):
+        """
+        Return the current working directory used to launch the process.
+        """
+        return self.__cwd
 
     def args(self):
         """
@@ -129,5 +136,6 @@ class ProcessExecution(object):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             shell=self.isShell(),
-            env=self.env()
+            env=self.env(),
+            cwd=self.cwd()
         )

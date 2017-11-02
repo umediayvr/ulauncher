@@ -22,6 +22,11 @@ class Bin(Launcher):
         executable = self.__resourceResolver.resolve(self.config('executable'))
         args = self.config('args') if 'args' in self.configNames() else []
 
+        # in case current working directory is specified
+        cwd = self.config('cwd') if 'cwd' in self.configNames() else None
+        if cwd:
+            cwd = self.__resourceResolver.resolve(cwd)
+
         processArgs = [
             executable
         ]
@@ -30,7 +35,8 @@ class Bin(Launcher):
         return ProcessExecution(
             processArgs,
             self.env(),
-            shell=True
+            shell=True,
+            cwd=cwd
         )
 
     @classmethod
