@@ -1,6 +1,11 @@
 import sys
 import select
 import subprocess
+import codecs
+
+# using uft-8 as default stream encoding
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
+sys.stderr = codecs.getwriter("utf-8")(sys.stderr)
 
 class ProcessExecution(object):
     """
@@ -91,23 +96,22 @@ class ProcessExecution(object):
 
             try:
                 ret = select.select(reads, [], [])
+                for fd in ret[0]:
+                    if fd == self.__process.stdout.fileno():
+                        read = self.__process.stdout.readline().decode("utf-8")
+                        sys.stdout.write(read)
+                        self.__stdout.append(read)
+
+                    if fd == self.__process.stderr.fileno():
+                        read = self.__process.stderr.readline().decode("utf-8")
+                        sys.stderr.write(read)
+                        self.__stderr.append(read)
 
             except KeyboardInterrupt:
                 reason = ' KeyboardInterrupt\n'
                 sys.stderr.write(reason)
                 self.__stderr.append(reason)
-
-            else:
-                for fd in ret[0]:
-                    if fd == self.__process.stdout.fileno():
-                        read = self.__process.stdout.readline().decode("ascii")
-                        sys.stdout.write(str(read))
-                        self.__stdout.append(read)
-
-                    if fd == self.__process.stderr.fileno():
-                        read = self.__process.stderr.readline().decode("ascii")
-                        sys.stderr.write(str(read))
-                        self.__stderr.append(read)
+                break
 
             if self.__process.poll() is not None:
                 break
