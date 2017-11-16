@@ -1,15 +1,15 @@
 {
   "launcherType": "bin",
   "config": {
-    "executable": "$( locres apps/gcc/$UVER_GCC_VERSION )/$UCORE_OS/$UCORE_OS_VERSION/bin/gcc"
+    "executable": "$( locres apps/gcc/$UVER_GCC_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/gcc"
   },
   "env": {
     "prepend": {
       "LD_LIBRARY_PATH": [
-        "$( locres apps/gcc/$UVER_GCC_VERSION )/$UCORE_OS/$UCORE_OS_VERSION/lib64"
+        "$( locres apps/gcc/$UVER_GCC_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/lib64"
       ],
       "CPLUS_INCLUDE_PATH": [
-        "$( locres apps/gcc/$UVER_GCC_VERSION )/$UCORE_OS/$UCORE_OS_VERSION/include/c++/$UVER_GCC_VERSION"
+        "$( locres apps/gcc/$UVER_GCC_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/include/c++/$UVER_GCC_VERSION"
       ]
     }
   }
