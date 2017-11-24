@@ -5,7 +5,7 @@
   },
   "env": {
     "override": {
-      "AUTODESK_ADLM_THINCLIENT_ENV": "$(mayalicloc $UVER_MAYA_VERSION)",
+      "AUTODESK_ADLM_THINCLIENT_ENV": "$(autodesklicloc maya $UVER_MAYA_VERSION)",
       "SGTK_COMPATIBILITY_DIALOG_SHOWN": "0"
     }
   },
