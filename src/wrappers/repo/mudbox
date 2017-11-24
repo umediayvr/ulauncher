@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# executing mudbox
+exec ulaunch "mudbox" "$@"

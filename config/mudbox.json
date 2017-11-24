@@ -1,0 +1,11 @@
+{
+  "launcherType": "bin",
+  "config": {
+    "executable": "$( locres apps/mudbox/$UVER_MUDBOX_VERSION )/bin/$UCORE_OS/autodesk/mudbox/bin/mudbox$(majorver $UVER_MUDBOX_VERSION)"
+  },
+  "env": {
+    "override": {
+      "AUTODESK_ADLM_THINCLIENT_ENV": "$(autodesklicloc mudbox $UVER_MUDBOX_VERSION)"
+    }
+  }
+}
