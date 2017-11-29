@@ -14,7 +14,7 @@
       "env": {
         "prepend" : {
           "PYTHONPATH": [
-            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/lib"
+            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/python/lib"
           ]
         }
       }
@@ -23,10 +23,10 @@
       "env" : {
         "prepend": {
           "MAYA_SCRIPT_PATH": [
-            "$( locres tools/maya/$UVER_MAYATOOLS_VERSION )/scripts"
+            "$( locres tools/maya/$UVER_MAYATOOLS_VERSION )/$(majorver $UVER_MAYA_VERSION)/python/scripts"
           ],
           "PYTHONPATH": [
-            "$( locres tools/maya/$UVER_MAYATOOLS_VERSION )/lib"
+            "$( locres tools/maya/$UVER_MAYATOOLS_VERSION )/$(majorver $UVER_MAYA_VERSION)/python/lib"
           ]
         }
       }

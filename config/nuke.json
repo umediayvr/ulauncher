@@ -16,7 +16,7 @@
       "env": {
         "prepend" : {
           "PYTHONPATH": [
-            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/lib"
+            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/python/lib"
           ]
         }
       }
