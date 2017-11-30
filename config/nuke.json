@@ -16,7 +16,19 @@
       "env": {
         "prepend" : {
           "PYTHONPATH": [
-            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/lib"
+            "$( locres tools/base/$UVER_BASETOOLS_VERSION )/python/lib"
+          ]
+        }
+      }
+    },
+    "nuketools": {
+      "env" : {
+        "prepend": {
+          "NUKE_PATH": [
+            "$( locres tools/nuke/$UVER_NUKETOOLS_VERSION )/$(majorver $UVER_NUKE_VERSION)/python/scripts"
+          ],
+          "PYTHONPATH": [
+            "$( locres tools/nuke/$UVER_NUKETOOLS_VERSION )/$(majorver $UVER_NUKE_VERSION)/python/lib"
           ]
         }
       }
