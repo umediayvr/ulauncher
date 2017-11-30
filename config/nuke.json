@@ -21,6 +21,18 @@
         }
       }
     },
+    "nuketools": {
+      "env" : {
+        "prepend": {
+          "NUKE_PATH": [
+            "$( locres tools/nuke/$UVER_NUKETOOLS_VERSION )/$(majorver $UVER_NUKE_VERSION)/python/scripts"
+          ],
+          "PYTHONPATH": [
+            "$( locres tools/nuke/$UVER_NUKETOOLS_VERSION )/$(majorver $UVER_NUKE_VERSION)/python/lib"
+          ]
+        }
+      }
+    },
     "neatvideo":{
       "env":{
         "prepend": {
