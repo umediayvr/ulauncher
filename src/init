@@ -21,15 +21,6 @@
 # getting current script folder
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# adding wrappers to the path
-ulauncherBinPath=""
-if ! [ -z "$ULAUNCHER_LOCAL" ]; then
-  localWrappersPath="$ULAUNCHER_LOCAL/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
-  if [ -d "$localWrappersPath" ]; then
-    ulauncherBinPath+="$localWrappersPath:"
-  fi
-fi
-
 # prepending ulauncher module to the python path
 ulauncherLib="$dir/lib"
 if [ -z "$PYTHONPATH" ]; then
@@ -45,7 +36,7 @@ fi
 
 # avoiding to prepended to the system path for every single bash session by making
 # sure bin is not included to the path yet.
-ulauncherBinPath+="$dir/bin:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
+ulauncherBinPath="$dir/bin:$dir/wrappers/$UCORE_OS:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
 if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
   # rez support (if available for the platform)
