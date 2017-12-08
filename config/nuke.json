@@ -41,15 +41,6 @@
           ]
         }
       }
-    },
-    "eddy":{
-      "env":{
-        "prepend": {
-          "NUKE_PATH": [
-            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/eddy/$UVER_EDDY_VERSION )/bin/$UCORE_OS"
-          ]
-        }
-      }
     }
   }
 }
