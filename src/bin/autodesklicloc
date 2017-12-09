@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Returns the location about the autodesk license (maya/mudbox/etc) (AdlmThinClientCustomEnv.xml)
-# first argument: application version (example: 1.3.0)
+# first argument: application name (example: maya)
+# second argument: application version (example: 1.3.0)
 function queryAutodeskLicLocation()
 {
   local appName=$1
