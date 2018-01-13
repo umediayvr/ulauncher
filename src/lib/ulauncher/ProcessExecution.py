@@ -1,3 +1,4 @@
+import re
 import sys
 import select
 import subprocess
@@ -11,6 +12,9 @@ class ProcessExecution(object):
     """
     Executes a process.
     """
+
+    # regex: any alpha numeric, underscore and dash characters are allowed.
+    __validateShellArgRegex = re.compile("^[\w_-]*$")
 
     def __init__(self, args, env={}, shell=True, cwd=None):
         """
@@ -134,7 +138,7 @@ class ProcessExecution(object):
         """
         Create a process that later should be executed through {@link run}.
         """
-        executableArgs = ' '.join(map(str, self.args())) if self.isShell() else self.args()
+        executableArgs = ' '.join(map(str, self.__sanitizeShellArgs(self.args()))) if self.isShell() else self.args()
         self.__process = subprocess.Popen(
             executableArgs,
             stdout=subprocess.PIPE,
@@ -143,3 +147,21 @@ class ProcessExecution(object):
             env=self.env(),
             cwd=self.cwd()
         )
+
+    @staticmethod
+    def __sanitizeShellArgs(args):
+        """
+        Sanitize shell args by escaping shell special characters.
+        """
+        result = []
+
+        for index, arg in enumerate(args):
+
+            # we need to avoid to escape the first argument otherwise, it will be
+            # interpreted as string rather than a command.
+            if index == 0 or ProcessExecution.__validateShellArgRegex.match(arg):
+                result.append(arg)
+            else:
+                result.append('"{}"'.format(arg.replace('"', '\\"')))
+
+        return result
