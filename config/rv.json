@@ -5,7 +5,7 @@
   },
   "env": {
     "override": {
-      "RV_SHOTGUN_DEFAULT_SERVER_URL": "umedia.shotgunstudio.com",
+      "RV_SHOTGUN_DEFAULT_SERVER_URL": "$UMEDIA_SHOTGUN_URL",
       "RV_SHOTGUN_DEFAULT_LOGIN": "$USERNAME"
     },
     "unset": [
