@@ -1,4 +1,8 @@
 #!/bin/bash
 
+# including shotgun api to the shotgun python executable
+shotgunApiPath="$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Resources/Python/tk-framework-desktopstartup/python/tk-core/python/tank_vendor"
+export PYTHONPATH="$shotgunApiPath:$PYTHONPATH"
+
 # executing shotgun python
 exec "$ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE" "$@"
