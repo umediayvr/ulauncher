@@ -41,6 +41,15 @@
           ]
         }
       }
+    },
+    "ingestor":{
+      "env": {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres apps/ingestor/$UVER_INGESTOR_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
+          ]
+        }
+      }
     }
   }
 }
