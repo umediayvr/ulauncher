@@ -13,6 +13,15 @@
     ]
   },
   "addons": {
+    "ushotgun": {
+      "env": {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres libs/ushotgun/$UVER_USHOTGUN_VERSION )/lib/python$(majorver $UVER_UPYTHON_VERSION)/lib"
+          ]
+        }
+      }
+    },
     "basetools": {
       "env": {
         "prepend" : {

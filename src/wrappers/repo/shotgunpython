@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# TODO: we need to convert this wrapper to use a bin launcher
 # including shotgun api to the shotgun python executable
 shotgunApiPath="$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Resources/Python/tk-framework-desktopstartup/python/tk-core/python/tank_vendor"
-export PYTHONPATH="$shotgunApiPath:$PYTHONPATH"
+ushotgun="$( locres libs/ushotgun/$UVER_USHOTGUN_VERSION )/lib/python$(majorver $UVER_UPYTHON_VERSION)/lib"
+export PYTHONPATH="$shotgunApiPath:$ushotgun:$PYTHONPATH"
 
 # executing shotgun python
 exec "$ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE" "$@"
