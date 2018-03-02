@@ -13,6 +13,15 @@
     ]
   },
   "addons": {
+    "shotgun": {
+      "env": {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres libs/shotgun/$UVER_SHOTGUN_VERSION )/lib/python2"
+          ]
+        }
+      }
+    },
     "ushotgun": {
       "env": {
         "prepend": {
