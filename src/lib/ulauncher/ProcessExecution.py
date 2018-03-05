@@ -4,10 +4,6 @@ import select
 import subprocess
 import codecs
 
-# using uft-8 as default stream encoding
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
-sys.stderr = codecs.getwriter("utf-8")(sys.stderr)
-
 class ProcessExecution(object):
     """
     Executes a process.
@@ -15,6 +11,10 @@ class ProcessExecution(object):
 
     # regex: any alpha numeric, underscore and dash characters are allowed.
     __validateShellArgRegex = re.compile("^[\w_-]*$")
+
+    # using uft-8 as default stream encoding
+    __sysStdout = codecs.getwriter("utf-8")(sys.stdout)
+    __sysStderr = codecs.getwriter("utf-8")(sys.stderr)
 
     def __init__(self, args, env={}, shell=True, cwd=None):
         """
@@ -103,12 +103,12 @@ class ProcessExecution(object):
                 for fd in ret[0]:
                     if fd == self.__process.stdout.fileno():
                         read = self.__process.stdout.readline().decode("utf-8")
-                        sys.stdout.write(read)
+                        self.__sysStdout.write(read)
                         self.__stdout.append(read)
 
                     if fd == self.__process.stderr.fileno():
                         read = self.__process.stderr.readline().decode("utf-8")
-                        sys.stderr.write(read)
+                        self.__sysStderr.write(read)
                         self.__stderr.append(read)
 
             except KeyboardInterrupt:
