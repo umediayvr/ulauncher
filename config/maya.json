@@ -46,6 +46,9 @@
           "PYTHONPATH": [
             "$( locres tools/maya/$UVER_MAYATOOLS_VERSION )/$(majorver $UVER_MAYA_VERSION)/python/lib"
           ]
+      },
+        "override" : {
+          "DEADLINE_PATH": "$( locres apps/deadline/$UVER_DEADLINECOMMAND_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin"
         }
       }
     },
