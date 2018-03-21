@@ -40,6 +40,15 @@
         }
       }
     },
+    "rvtools": {
+      "env" : {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres tools/rv/$UVER_RVTOOLS_VERSION )/$(majorver $UVER_RV_VERSION)/python/lib"
+          ]
+        }
+      }
+    },
     "basetools": {
       "env": {
         "prepend" : {

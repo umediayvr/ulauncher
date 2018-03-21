@@ -54,6 +54,15 @@
         }
       }
     },
+    "pgbokeh":{
+      "env":{
+        "prepend": {
+          "NUKE_PATH": [
+            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/pgBokeh/$UVER_PGBOKEH_VERSION )/bin/$UCORE_OS"
+          ]
+        }
+      }
+    },
     "neatvideo":{
       "env":{
         "prepend": {
