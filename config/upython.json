@@ -57,6 +57,15 @@
           "PYTHONPATH": "$( locres libs/tank/$UVER_TANK_VERSION )/lib/python$(majorminorver $UVER_UPYTHON_VERSION)"
         }
       }
+    },
+    "ingestor":{
+      "env": {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres apps/ingestor/$UVER_INGESTOR_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
+          ]
+        }
+      }
     }
   }
 }
