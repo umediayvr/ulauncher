@@ -54,6 +54,19 @@
         }
       }
     },
+    "opticalflares":{
+      "env":{
+        "prepend": {
+          "NUKE_PATH": [
+            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/opticalFlares/$UVER_OPTICALFLARES_VERSION )/bin/$UCORE_OS/Menu",
+            "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/opticalFlares/$UVER_OPTICALFLARES_VERSION )/bin/$UCORE_OS/plugin"
+          ]
+        },
+        "override": {
+          "OPTICAL_FLARES_PRESET_PATH": "$( locres plugins/nuke/$(majorver $UVER_NUKE_VERSION)/opticalFlares )/Presets"
+        }
+      }
+    },
     "pgbokeh":{
       "env":{
         "prepend": {
