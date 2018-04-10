@@ -15,16 +15,18 @@ function showUDirChooser()
   # Glob into the selected directory to look for the directories inside
   for j in $directory/* ; do
       if [ -d "$j" ]; then
-        local test="$(basename $j)"
+        local dirName="$(basename $j)"
         if ! [ -z "$stringNames" ]; then
           stringNames+="|"
         fi
-        stringNames+="$test"
+        stringNames+="$dirName"
       fi
   done
 
+  echo $stringNames
+
   # Create the UI to choose the value
-  local value="$directory/$(zenity --forms --title "UDirChooser" --text "$chooserType" --combo-values "$stringNames")"
+  local value="$directory/$(zenity --forms --title "UDirChooser" --text "$chooserType" --add-combo "" --combo-values "$stringNames")"
 
   echo $value
 }
