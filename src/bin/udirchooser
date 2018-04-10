@@ -7,7 +7,6 @@
 # result: string containing the full path with the option selected by the user.
 function showUDirChooser()
 {
-  #${parameter//pattern/string}
   # arguments
   local directory=$1
   local chooserType=$2
