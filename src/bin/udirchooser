@@ -2,7 +2,7 @@
 
 # Shows a combo box listing all the directories found inside the path given
 #
-# first argument: string containing the path to look for directories (Path should end with "/")
+# first argument: string containing the path to look for directories (Path should NOT end with "/")
 # second argument: string containing the option to choose e.g. "Choose a Vendor"
 # result: string containing the full path with the option selected by the user.
 function showUDirChooser()
@@ -12,23 +12,20 @@ function showUDirChooser()
   local directory=$1
   local chooserType=$2
   local stringNames=""
-  local first="0"
 
   # Glob into the selected directory to look for the directories inside
   for j in $directory/* ; do
       if [ -d "$j" ]; then
         local test="$(basename $j)"
-        if [ "$first" == "0" ]; then
-          stringNames="$test"
-          first="1"
-        else
-          stringNames+="|$test"
+        if ! [ -z "$stringNames" ]; then
+          stringNames+="|"
         fi
+        stringNames+="$test"
       fi
   done
 
   # Create the UI to choose the value
-  local value="$directory$(zenity --forms --title "UDirChooser" --text "$chooserType" --combo-values "$stringNames")"
+  local value="$directory/$(zenity --forms --title "UDirChooser" --text "$chooserType" --combo-values "$stringNames")"
 
   echo $value
 }
