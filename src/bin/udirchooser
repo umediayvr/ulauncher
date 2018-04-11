@@ -23,8 +23,6 @@ function showUDirChooser()
       fi
   done
 
-  echo $stringNames
-
   # Create the UI to choose the value
   local value="$directory/$(zenity --forms --title "UDirChooser" --text "$chooserType" --add-combo "" --combo-values "$stringNames")"
 
