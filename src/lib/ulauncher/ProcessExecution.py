@@ -2,7 +2,6 @@ import re
 import sys
 import select
 import subprocess
-import codecs
 
 class ProcessExecution(object):
     """
@@ -12,18 +11,17 @@ class ProcessExecution(object):
     # regex: any alpha numeric, underscore and dash characters are allowed.
     __validateShellArgRegex = re.compile("^[\w_-]*$")
 
-    # using uft-8 as default stream encoding
-    __sysStdout = codecs.getwriter("utf-8")(sys.stdout)
-    __sysStderr = codecs.getwriter("utf-8")(sys.stderr)
-
-    def __init__(self, args, env={}, shell=True, cwd=None):
+    def __init__(self, args, env={}, shell=True, cwd=None, redirectStderrToStdout=False):
         """
-        Create an ProcessExecution object.
+        Create a ProcessExecution object.
+
+        The constructor signature tries mimic the features available by subprocess.Popen.
         """
         self.__stdout = []
         self.__stderr = []
         self.__shell = shell
         self.__cwd = cwd
+        self.__redirectStderrToStdout = redirectStderrToStdout
 
         self.__setArgs(args)
         self.__setEnv(env)
@@ -65,6 +63,12 @@ class ProcessExecution(object):
         """
         return self.__stdout
 
+    def redirectStderrToStdout(self):
+        """
+        Return a boolean telling if the stderr stream should be redirected to stdout.
+        """
+        return self.__redirectStderrToStdout
+
     def executionSuccess(self):
         """
         Return a boolean if the execution has been sucessfull.
@@ -94,21 +98,23 @@ class ProcessExecution(object):
         # https://stackoverflow.com/questions/12270645
         while True:
             reads = [
-                self.__process.stdout.fileno(),
-                self.__process.stderr.fileno()
+                self.__process.stdout.fileno()
             ]
+
+            if self.__process.stderr:
+                reads.append(self.__process.stderr.fileno())
 
             try:
                 ret = select.select(reads, [], [])
                 for fd in ret[0]:
                     if fd == self.__process.stdout.fileno():
-                        read = self.__process.stdout.readline().decode("utf-8")
-                        self.__sysStdout.write(read)
+                        read = self.__process.stdout.readline().decode("utf_8")
+                        sys.stdout.write(read)
                         self.__stdout.append(read)
 
-                    if fd == self.__process.stderr.fileno():
-                        read = self.__process.stderr.readline().decode("utf-8")
-                        self.__sysStderr.write(read)
+                    if self.__process.stderr and fd == self.__process.stderr.fileno():
+                        read = self.__process.stderr.readline().decode("utf_8")
+                        sys.stderr.write(read)
                         self.__stderr.append(read)
 
             except KeyboardInterrupt:
@@ -138,11 +144,13 @@ class ProcessExecution(object):
         """
         Create a process that later should be executed through {@link run}.
         """
+        stderrStream = subprocess.STDOUT if self.redirectStderrToStdout() else subprocess.PIPE
+
         executableArgs = ' '.join(map(str, self.__sanitizeShellArgs(self.args()))) if self.isShell() else self.args()
         self.__process = subprocess.Popen(
             executableArgs,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stderr=stderrStream,
             shell=self.isShell(),
             env=self.env(),
             cwd=self.cwd()
