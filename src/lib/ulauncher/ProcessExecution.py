@@ -126,6 +126,11 @@ class ProcessExecution(object):
             if self.__process.poll() is not None:
                 break
 
+        # closing streams
+        self.__process.stdout.close()
+        if self.__process.stderr:
+            self.__process.stderr.close()
+
     def __setArgs(self, args):
         """
         Set a list of arguments that should be used by the process.
