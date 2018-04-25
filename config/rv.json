@@ -31,11 +31,11 @@
         }
       }
     },
-    "rvtools": {
-      "env" : {
+    "ingestor":{
+      "env": {
         "prepend": {
           "PYTHONPATH": [
-            "$( locres tools/rv/$UVER_RVTOOLS_VERSION )/$(majorver $UVER_RV_VERSION)/python/lib"
+            "$( locres apps/ingestor/$UVER_INGESTOR_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
           ]
         }
       }
@@ -46,6 +46,10 @@
           "PYTHONPATH": [
             "$( locres tools/rv/$UVER_RVTOOLS_VERSION )/$(majorver $UVER_RV_VERSION)/python/lib"
           ]
+        },
+        "override" : {
+          "RV_SUPPORT_PATH": "$( locres tools/rv/$UVER_RVTOOLS_VERSION )/$(majorver $UVER_RV_VERSION)/python/config/ocio",
+          "RV_PREFS_CLOBBER_PATH": "$( locres tools/rv/$UVER_RVTOOLS_VERSION )/$(majorver $UVER_RV_VERSION)/python/config/prefs"
         }
       }
     },
