@@ -39,21 +39,22 @@ fi
 ulauncherBinPath="$dir/bin:$dir/wrappers/$UCORE_OS:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
 if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
-  # rez support (if available for the platform)
-  rez="$( locres apps/rez/$UVER_REZ_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION"
-  if [ -d "$rez" ]; then
-    # adding it to the path
-    export PATH="$rez/bin/rez:$PATH"
-
-    # sourcing auto-completion
-    source "$rez/completion/complete.sh"
-  fi
-
   export ULAUNCHER_BIN_PATH=$ulauncherBinPath
   export PATH="$ULAUNCHER_BIN_PATH:$PATH"
-fi
 
-# shotgun python location
-# (currently the location of 'shotgun python' is also used externally under job configuration:
-# <project>/config/toolkit/config/core/interpreter_Linux.cfg)
-export ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE=$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Python/bin/python
+  # setting global environment variables
+  ulauncherGlobalEnvPath="$ULAUNCHER_CONFIG_DIR/env/init.json"
+  if [ -f "$ulauncherGlobalEnvPath" ]; then
+    while IFS='=' read -r name value || [[ -n "$name" ]];
+    do
+      # convention followed by <ENV_NAME>=<ENV_VALUE>
+      export "$name"=$value
+    done < <(tweakenv "$ulauncherGlobalEnvPath")
+  fi
+
+  # rez support (if available for the platform)
+  if [ -d "$REZ_LOCATION" ]; then
+    # sourcing auto-completion
+    source "$REZ_LOCATION/completion/complete.sh"
+  fi
+fi
