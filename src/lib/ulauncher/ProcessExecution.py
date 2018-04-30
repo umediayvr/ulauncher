@@ -97,7 +97,7 @@ class ProcessExecution(object):
         # (subprocess/communicate default behaviour)
         # https://stackoverflow.com/questions/12270645
         while True:
-            cancel = True
+            hasOutput = False
             reads = [
                 self.__process.stdout.fileno()
             ]
@@ -106,7 +106,7 @@ class ProcessExecution(object):
                 reads.append(self.__process.stderr.fileno())
 
             try:
-                cancel = self.__readProcessOutput(reads)
+                hasOutput = self.__readProcessOutput(reads)
 
             except KeyboardInterrupt:
                 reason = ' KeyboardInterrupt\n'
@@ -114,7 +114,7 @@ class ProcessExecution(object):
                 self.__stderr.append(reason)
                 break
 
-            if cancel and self.__process.poll() is not None:
+            if not hasOutput and self.__process.poll() is not None:
                 break
 
         # closing streams
@@ -129,7 +129,7 @@ class ProcessExecution(object):
         Return a boolean telling if the process has printed any information
         through stdout or stderr.
         """
-        hasOutput = True
+        hasOutput = False
         ret = select.select(reads, [], [])
         for fd in ret[0]:
             if fd == self.__process.stdout.fileno():
@@ -138,7 +138,7 @@ class ProcessExecution(object):
                 self.__stdout.append(read)
 
                 if len(read):
-                    hasOutput = False
+                    hasOutput = True
 
             if self.__process.stderr and fd == self.__process.stderr.fileno():
                 read = self.__streamValue(self.__process.stderr)
@@ -146,7 +146,7 @@ class ProcessExecution(object):
                 self.__stderr.append(read)
 
                 if len(read):
-                    hasOutput = False
+                    hasOutput = True
 
         return hasOutput
 
