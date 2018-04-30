@@ -68,8 +68,10 @@ class EnvModifier(object):
         """
         Add the contents from a dict containg the vars inside of the operation type.
 
-        The dictonary must follow the specification where the operation types
-        (append, prepend, override and unset) can be optional:
+        The dictionary must follow the specification where the operation types
+        should contain another dict with the environment variables, except from
+        unset that expects a list of variable names. The operation types are
+        (append, prepend, override and unset) and they can be optional:
         {
             "append": [
                 "VAR_NAME": [
@@ -92,7 +94,7 @@ class EnvModifier(object):
         }
         """
         assert isinstance(inputDict, dict), \
-            "Invalid dictonary!"
+            "Invalid dictionary!"
 
         # prepend
         if 'prepend' in inputDict:

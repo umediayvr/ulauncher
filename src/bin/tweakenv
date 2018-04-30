@@ -8,7 +8,7 @@ from ulauncher import EnvModifier
 
 def tweakEnvironment(envFilePath, separator):
     """
-    Output a tweaked environment in the stdout stream by based on the input json env file.
+    Output a tweaked environment to the stdout stream by based on the json env file.
     """
     contents = {}
     with open(envFilePath) as f:
