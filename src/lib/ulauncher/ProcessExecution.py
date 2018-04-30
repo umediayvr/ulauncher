@@ -126,8 +126,8 @@ class ProcessExecution(object):
         """
         Read the process output by looking at stdout and stderr.
 
-        Return a boolean telling the if process has collected any information
-        from both stdout or stderr.
+        Return a boolean telling if the process has printed any information
+        through stdout or stderr.
         """
         hasOutput = True
         ret = select.select(reads, [], [])
