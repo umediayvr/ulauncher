@@ -97,6 +97,7 @@ class ProcessExecution(object):
         # (subprocess/communicate default behaviour)
         # https://stackoverflow.com/questions/12270645
         while True:
+            cancel = True
             reads = [
                 self.__process.stdout.fileno()
             ]
@@ -105,17 +106,7 @@ class ProcessExecution(object):
                 reads.append(self.__process.stderr.fileno())
 
             try:
-                ret = select.select(reads, [], [])
-                for fd in ret[0]:
-                    if fd == self.__process.stdout.fileno():
-                        read = self.__process.stdout.readline().decode("utf_8")
-                        sys.stdout.write(read)
-                        self.__stdout.append(read)
-
-                    if self.__process.stderr and fd == self.__process.stderr.fileno():
-                        read = self.__process.stderr.readline().decode("utf_8")
-                        sys.stderr.write(read)
-                        self.__stderr.append(read)
+                cancel = self.__readProcessOutput(reads)
 
             except KeyboardInterrupt:
                 reason = ' KeyboardInterrupt\n'
@@ -123,13 +114,41 @@ class ProcessExecution(object):
                 self.__stderr.append(reason)
                 break
 
-            if self.__process.poll() is not None:
+            if cancel and self.__process.poll() is not None:
                 break
 
         # closing streams
         self.__process.stdout.close()
         if self.__process.stderr:
             self.__process.stderr.close()
+
+    def __readProcessOutput(self, reads):
+        """
+        Read the process output by looking at stdout and stderr.
+
+        Return a boolean telling if the process has printed any information
+        through stdout or stderr.
+        """
+        hasOutput = True
+        ret = select.select(reads, [], [])
+        for fd in ret[0]:
+            if fd == self.__process.stdout.fileno():
+                read = self.__streamValue(self.__process.stdout)
+                sys.stdout.write(read)
+                self.__stdout.append(read)
+
+                if len(read):
+                    hasOutput = False
+
+            if self.__process.stderr and fd == self.__process.stderr.fileno():
+                read = self.__streamValue(self.__process.stderr)
+                sys.stderr.write(read)
+                self.__stderr.append(read)
+
+                if len(read):
+                    hasOutput = False
+
+        return hasOutput
 
     def __setArgs(self, args):
         """
@@ -160,6 +179,16 @@ class ProcessExecution(object):
             env=self.env(),
             cwd=self.cwd()
         )
+
+    @staticmethod
+    def __streamValue(stream):
+        """
+        Return a string value from the stream.
+        """
+        read = stream.readline()
+        if not isinstance(read, str):
+            read = read.decode("utf_8")
+        return read
 
     @staticmethod
     def __sanitizeShellArgs(args):

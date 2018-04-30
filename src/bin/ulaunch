@@ -9,7 +9,10 @@ import uver
 
 class _CustomLauncherRunner(ulauncher.LauncherRunner):
 
-    ulauncherConfigDir = os.environ['ULAUNCHER_CONFIG_DIR']
+    ulauncherConfigDir = os.path.join(
+        os.environ['ULAUNCHER_CONFIG_DIR'],
+        "launcher"
+    )
     uverVersionsDir = os.environ['UVER_VERSIONS_DIR']
     uchooserEnvName = 'ULAUNCHER_SHOW_UCHOOSER'
 

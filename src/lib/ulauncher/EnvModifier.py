@@ -64,6 +64,58 @@ class EnvModifier(object):
         for varName in envModifier.unsetVarNames():
             self.addUnsetVar(varName)
 
+    def addFromDict(self, inputDict):
+        """
+        Add the contents from a dict containg the vars inside of the operation type.
+
+        The dictionary must follow the specification where the operation types
+        should contain another dict with the environment variables, except from
+        unset that expects a list of variable names. The operation types are
+        (append, prepend, override and unset) and they can be optional:
+        {
+            "append": [
+                "VAR_NAME": [
+                    "VAR_VALUE"
+                ]
+            ],
+            "prepend": [
+                "VAR_NAME": [
+                    "VAR_VALUE"
+                ]
+            ],
+            "override": [
+                "VAR_NAME": [
+                    "VAR_VALUE"
+                ]
+            ],
+            "unset": [
+                "VAR_NAME"
+            ]
+        }
+        """
+        assert isinstance(inputDict, dict), \
+            "Invalid dictionary!"
+
+        # prepend
+        if 'prepend' in inputDict:
+            for envName, envValue in inputDict["prepend"].items():
+                self.addPrependVar(envName, envValue)
+
+        # append
+        if 'append' in inputDict:
+            for envName, envValue in inputDict["append"].items():
+                self.addAppendVar(envName, envValue)
+
+        # override
+        if 'override' in inputDict:
+            for envName, envValue in inputDict["override"].items():
+                self.setOverrideVar(envName, envValue)
+
+        # unset
+        if 'unset' in inputDict:
+            for envName in inputDict["unset"]:
+                self.addUnsetVar(envName)
+
     def addPrependVar(self, name, value):
         """
         Add a value that is going to be prepended to the env.

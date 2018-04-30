@@ -8,4 +8,4 @@ ingestor="$( locres apps/ingestor/$UVER_INGESTOR_VERSION )/python$(majorver $UVE
 export PYTHONPATH="$shotgunApiPath:$ushotgun:$ingestor:$PYTHONPATH"
 
 # executing shotgun python
-exec "$ULAUNCHER_SHOTGUN_PYTHON_EXECUTABLE" "$@"
+exec "$SHOTGUN_PYTHON_EXECUTABLE" "$@"
