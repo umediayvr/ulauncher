@@ -21,6 +21,15 @@
         }
       }
     },
+    "psycopg": {
+      "env": {
+        "prepend": {
+          "PYTHONPATH": [
+            "$( locres libs/psycopg/$UVER_PSYCOPG_VERSION )/lib/python$(majorminorver $UVER_UPYTHON_VERSION)/$UCORE_OS"
+          ]
+        }
+      }
+    },
     "setuptools": {
       "env": {
         "prepend": {
