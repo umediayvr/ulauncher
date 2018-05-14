@@ -5,6 +5,7 @@
 shotgunApiPath="$( locres apps/shotgunDesktop/$UVER_SHOTGUNDESKTOP_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/Resources/Python/tk-framework-desktopstartup/python/tk-core/python/tank_vendor"
 ushotgun="$( locres libs/ushotgun/$UVER_USHOTGUN_VERSION )/lib/python$(majorver $UVER_UPYTHON_VERSION)/lib"
 ingestor="$( locres apps/ingestor/$UVER_INGESTOR_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
+centipede="$( locres apps/centipede/$UVER_CENTIPEDE_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
 export PYTHONPATH="$shotgunApiPath:$ushotgun:$ingestor:$PYTHONPATH"
 
 # executing shotgun python

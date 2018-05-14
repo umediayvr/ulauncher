@@ -2,6 +2,8 @@
   "prepend": {
     "INGESTOR_RESOURCE_PATH": [
     ],
+    "CENTIPEDE_RESOURCE_PATH": [
+    ],
     "PATH": [
       "$( locres apps/rez/$UVER_REZ_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/bin/rez"
     ]
