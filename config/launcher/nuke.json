@@ -94,15 +94,6 @@
         }
       }
     },
-    "centipede":{
-      "env": {
-        "prepend": {
-          "PYTHONPATH": [
-            "$( locres apps/centipede/$UVER_CENTIPEDE_VERSION )/python$(majorver $UVER_UPYTHON_VERSION)/lib"
-          ]
-        }
-      }
-    },
     "cryptomatte":{
       "env":{
         "prepend": {
