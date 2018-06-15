@@ -1,6 +1,0 @@
-{
-  "launcherType": "bin",
-  "config": {
-    "executable": "$( locres apps/firefox/$UVER_FIREFOX_VERSION )/bin/$UCORE_OS/$UCORE_OS_VERSION/firefox"
-  }
-}

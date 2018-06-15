@@ -1,7 +1,0 @@
-{
-  "launcherType": "bin",
-  "config": {
-    "cwd": "$( locres apps/silhouette/$UVER_SILHOUETTE_VERSION )/bin/$UCORE_OS",
-    "executable": "./run.sh"
-  }
-}

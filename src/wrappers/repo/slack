@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# executing slack
-exec ulaunch "slack" "$@"
