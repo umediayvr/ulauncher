@@ -28,7 +28,7 @@ function showUChooser()
   (
     # this is necessary to avoid an issue in kde that does not allow checkboxes to be toggled
     # properly (due some kde skin issue on top of gtk)
-    if [ "$UCORE_OS_VERSION" == "centos7" ]; then
+    if [ "$USYS_OS_VERSION" == "centos7" ]; then
       export GTK_THEME="/usr/share/themes/Default/gtk-3.0/gtk-keys.css"
     fi
 
