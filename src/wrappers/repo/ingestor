@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# executing ingestor
-exec ulaunch "ingestor" "$@"

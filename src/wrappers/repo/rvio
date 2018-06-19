@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# executing rv
-exec ulaunch "rvio" "$@"

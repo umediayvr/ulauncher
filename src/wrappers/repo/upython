@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# executing upython
-exec ulaunch "upython" "$@"

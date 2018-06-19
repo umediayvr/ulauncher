@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# executing qbs
-exec ulaunch "qbs" "$@"

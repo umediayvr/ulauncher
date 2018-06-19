@@ -29,21 +29,21 @@ else
   export PYTHONPATH="$ulauncherLib:$PYTHONPATH"
 fi
 
-# making sure $ULAUNCHER_CONFIG_DIR is defined properly
-if ! [ -d "$ULAUNCHER_CONFIG_DIR" ]; then
-  echo "ulauncher error: Could not find directory defined by \$ULAUNCHER_CONFIG_DIR" >&2
+# making sure $ULAUNCHER_CONFIG_ROOT is defined properly
+if ! [ -d "$ULAUNCHER_CONFIG_ROOT" ]; then
+  echo "ulauncher error: Could not find directory defined by \$ULAUNCHER_CONFIG_ROOT" >&2
 fi
 
 # avoiding to prepended to the system path for every single bash session by making
 # sure bin is not included to the path yet.
-ulauncherBinPath="$dir/bin:$dir/wrappers/$UCORE_OS:$dir/wrappers/$UCORE_OS/$UCORE_OS_VERSION"
+ulauncherBinPath="$dir/bin:$ULAUNCHER_CONFIG_ROOT/wrapper/$USYS_OS/$USYS_OS_VERSION:$ULAUNCHER_CONFIG_ROOT/wrapper/$USYS_OS:$ULAUNCHER_CONFIG_ROOT/wrapper"
 if ! [ "$ULAUNCHER_BIN_PATH" == "$ulauncherBinPath" ]; then
 
   export ULAUNCHER_BIN_PATH=$ulauncherBinPath
   export PATH="$ULAUNCHER_BIN_PATH:$PATH"
 
   # setting global environment variables
-  ulauncherGlobalEnvPath="$ULAUNCHER_CONFIG_DIR/env/init.json"
+  ulauncherGlobalEnvPath="$ULAUNCHER_CONFIG_ROOT/env/init.json"
   if [ -f "$ulauncherGlobalEnvPath" ]; then
     while IFS='=' read -r name value || [[ -n "$name" ]];
     do

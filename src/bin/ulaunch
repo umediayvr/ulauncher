@@ -9,11 +9,11 @@ import uver
 
 class _CustomLauncherRunner(ulauncher.LauncherRunner):
 
-    ulauncherConfigDir = os.path.join(
-        os.environ['ULAUNCHER_CONFIG_DIR'],
+    ulauncherConfigRoot = os.path.join(
+        os.environ['ULAUNCHER_CONFIG_ROOT'],
         "launcher"
     )
-    uverVersionsDir = os.environ['UVER_VERSIONS_DIR']
+    uverConfigRoot = os.environ['UVER_CONFIG_ROOT']
     uchooserEnvName = 'ULAUNCHER_SHOW_UCHOOSER'
 
     def run(self, args, env, displayUChooser=False):
@@ -57,7 +57,7 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
         """
         # creating a uver parser to collect the available softwares
         uverLoader = uver.Loader.JsonLoader()
-        uverLoader.addFromJsonDirectory(_CustomLauncherRunner.uverVersionsDir)
+        uverLoader.addFromJsonDirectory(_CustomLauncherRunner.uverConfigRoot)
 
         # getting available softwares
         softwares = uverLoader.softwares(env)
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # creating a launcher runner
     launcherRunner = _CustomLauncherRunner(
         software,
-        _CustomLauncherRunner.ulauncherConfigDir
+        _CustomLauncherRunner.ulauncherConfigRoot
     )
 
     # running it

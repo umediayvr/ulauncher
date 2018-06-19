@@ -1,6 +1,0 @@
-{
-  "launcherType": "bin",
-  "config": {
-    "executable": "$( locres apps/katana/$UVER_KATANA_VERSION )/bin/$UCORE_OS/katana"
-  }
-}
