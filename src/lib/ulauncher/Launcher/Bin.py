@@ -15,11 +15,14 @@ class Bin(Launcher):
 
         self.__resourceResolver = ResourceResolver(self.env())
 
-    def _perform(self):
+    def _perform(self, executableType):
         """
         Implement the execution of the binary launcher.
         """
-        executable = self.__resourceResolver.resolve(self.config('executable'))
+        assert executableType in self.config('executable'),\
+            "Invalid executable type {}".format(executableType)
+
+        executable = self.__resourceResolver.resolve(self.config('executable')[executableType])
         args = self.config('args') if 'args' in self.configNames() else []
 
         # in case current working directory is specified

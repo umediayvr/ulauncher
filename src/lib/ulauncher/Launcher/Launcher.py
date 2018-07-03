@@ -67,7 +67,7 @@ class Launcher(object):
         """
         return self.__env
 
-    def _perform(self):
+    def _perform(self, executableType, **kwargs):
         """
         Run the launcher.
 
@@ -76,7 +76,7 @@ class Launcher(object):
         """
         raise NotImplemented
 
-    def run(self):
+    def run(self, executableType="default", **kwargs):
         """
         Perform launcher.
 
@@ -84,7 +84,7 @@ class Launcher(object):
         execution, such as stdout, stderr, session time, processing peak, memory
         peak (etc) and store them in the database.
         """
-        processExecution = self._perform()
+        processExecution = self._perform(executableType, **kwargs)
 
         assert isinstance(processExecution, ProcessExecution), \
             'Invalid ProcessExecution Type!'

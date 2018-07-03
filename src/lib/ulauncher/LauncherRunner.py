@@ -40,7 +40,7 @@ class LauncherRunner(object):
         """
         return self.__launcherConfigDir
 
-    def run(self, args=[], env={}):
+    def run(self, executableType, args=[], env={}):
         """
         Launch an application.
         """
@@ -68,7 +68,7 @@ class LauncherRunner(object):
         launcher = loader.launcher(env)
 
         # running launcher
-        return launcher.run()
+        return launcher.run(executableType)
 
     def __setSoftware(self, software):
         """

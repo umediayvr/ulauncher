@@ -16,7 +16,7 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
     uverConfigRoot = os.environ['UVER_CONFIG_ROOT']
     uchooserEnvName = 'ULAUNCHER_SHOW_UCHOOSER'
 
-    def run(self, args, env, displayUChooser=False):
+    def run(self, executableType, args, env, displayUChooser=False):
         """
         Hooking the execution to add support for the "addonchooser" interface.
         """
@@ -48,7 +48,11 @@ class _CustomLauncherRunner(ulauncher.LauncherRunner):
                 addon.setOption('enabled', (addon.name() in enabledAddonNames))
 
         # runnint it
-        return super(_CustomLauncherRunner, self).run(args, env)
+        return super(_CustomLauncherRunner, self).run(
+            executableType,
+            args,
+            env
+        )
 
     @staticmethod
     def createSoftware(name, env):
@@ -95,9 +99,15 @@ if __name__ == "__main__":
         displayUChooser = True
         del env[uchooserEnv]
 
+    # executable type
+    executableType = "default"
+    nameArgs = args.name.split("/")
+    if len(nameArgs) > 1:
+        executableType = '/'.join(nameArgs[1:])
+
     # creating a software to pass to the runner
     software = _CustomLauncherRunner.createSoftware(
-        args.name,
+        nameArgs[0],
         env
     )
 
@@ -110,6 +120,7 @@ if __name__ == "__main__":
     # running it
     sys.exit(
         launcherRunner.run(
+            executableType,
             unknownArgs,
             env,
             displayUChooser
