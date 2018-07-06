@@ -15,7 +15,7 @@
 #                                  / | \
 #                                    |
 #
-# Takes care of the execution of applications and their dependencies under
+# Handles the execution of applications and their dependencies under
 # umedia environment.
 
 # getting current script folder
